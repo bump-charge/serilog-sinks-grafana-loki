@@ -443,4 +443,29 @@ public class LokiJsonTextFormatterRequestPayloadTests
                         TimeStampReplacement));
             });
     }
+
+    [Fact]
+    public void DictionaryPropertyShouldBeInlinedInStructuredMetadata()
+    {
+        var logger = new LoggerConfiguration()
+            .WriteTo.GrafanaLoki(
+                "https://loki:3100",
+                httpClient: _client)
+            .CreateLogger();
+
+        var dico = new Dictionary<string, object>() { { "DicoSubKey", 9.6m } };
+        logger.Information("Object is created {Dico}", dico);
+        logger.Dispose();
+
+        _client.Content.ShouldMatchApproved(
+            c =>
+            {
+                c.SubFolder(ApprovalsFolderName);
+                c.WithScrubber(
+                    s => Regex.Replace(
+                        s,
+                        TimeStampRegEx,
+                        TimeStampReplacement));
+            });
+    }
 }

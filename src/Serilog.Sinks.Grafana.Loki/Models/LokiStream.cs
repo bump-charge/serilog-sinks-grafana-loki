@@ -9,6 +9,7 @@
 // See LICENSE file in the project root for full license information.
 
 using System.Text.Json.Serialization;
+using Serilog.Events;
 using Serilog.Sinks.Grafana.Loki.Utils;
 
 namespace Serilog.Sinks.Grafana.Loki.Models;
@@ -19,15 +20,15 @@ internal class LokiStream
     public Dictionary<string, string> Labels { get; } = new();
 
     [JsonPropertyName("values")]
-    public IList<IList<string>> Entries { get; set; } = new List<IList<string>>();
+    public IList<LokiValues> Entries { get; set; } = new List<LokiValues>();
 
     public void AddLabel(string key, string value)
     {
         Labels[key] = value;
     }
 
-    public void AddEntry(DateTimeOffset timestamp, string entry)
+    public void AddEntry(DateTimeOffset timestamp, string entry, IReadOnlyDictionary<string, LogEventPropertyValue> properties)
     {
-        Entries.Add(new[] {timestamp.ToUnixNanosecondsString(), entry});
+        Entries.Add(new(timestamp, entry, properties));
     }
 }

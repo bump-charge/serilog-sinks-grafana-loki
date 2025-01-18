@@ -1,0 +1,1 @@
+﻿{"streams":[{"stream":{},"values":[["<unixepochinnanoseconds>","{\u0022Message\u0022:\u0022Object is created [(\\\u0022DicoSubKey\\\u0022: 9.6)]\u0022,\u0022MessageTemplate\u0022:\u0022Object is created {Dico}\u0022,\u0022Dico\u0022:{\u0022DicoSubKey\u0022:9.6},\u0022level\u0022:\u0022info\u0022}",{"Dico_DicoSubKey":"9.6"}]]}]}
