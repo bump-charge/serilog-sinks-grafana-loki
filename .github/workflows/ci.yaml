@@ -44,4 +44,4 @@ jobs:
       - if: matrix.os == 'windows-latest' && github.event_name == 'release' && github.event.action == 'published'
         run: |
           ./build.ps1
-          dotnet nuget push .\artifacts\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
+          dotnet nuget push .\artifacts\*.nupkg -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -k ${{ secrets.GITHUB_TOKEN }}

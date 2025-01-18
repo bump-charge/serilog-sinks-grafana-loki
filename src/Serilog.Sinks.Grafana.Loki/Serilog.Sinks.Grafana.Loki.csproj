@@ -15,7 +15,7 @@
         <RepositoryUrl>https://github.com/serilog-contrib/serilog-sinks-grafana-loki.git</RepositoryUrl>
         <!--NuGet package-->
         <PackageIcon>serilog-sink-nuget.png</PackageIcon>
-        <PackageId>Serilog.Sinks.Grafana.Loki</PackageId>
+        <PackageId>Bump.Serilog.Sinks.Grafana.Loki</PackageId>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/serilog-contrib/serilog-sinks-grafana-loki</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
