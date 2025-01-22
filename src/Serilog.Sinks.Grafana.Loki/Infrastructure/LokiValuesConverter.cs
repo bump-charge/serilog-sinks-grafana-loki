@@ -42,11 +42,6 @@ public class LokiValuesConverter : JsonConverter<LokiValues>
             writer.WriteStartObject();
             foreach (var item in value.Metadata)
             {
-                if (item.Key == "level")
-                {
-                    continue;
-                }
-
                 WriteLogEventPropertyValue(item.Key, writer, item.Value, options);
             }
 
@@ -73,7 +68,7 @@ public class LokiValuesConverter : JsonConverter<LokiValues>
             else
             {
                 // Loki wants string values
-                writer.WriteStringValue(sv.Value?.ToString());
+                writer.WriteStringValue(sv.Value?.ToString() ?? string.Empty);
             }
         }
 
