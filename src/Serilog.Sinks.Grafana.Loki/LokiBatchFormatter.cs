@@ -181,7 +181,13 @@ internal class LokiBatchFormatter : ILokiBatchFormatter
 
         formatter.Format(logEvent, buffer);
 
-        stream.AddEntry(timestamp, buffer.ToString().TrimEnd('\r', '\n'), lokiLogEvent.Properties);
+        var properties = lokiLogEvent.Properties;
+        if (_propertiesAsLabels.Any())
+        {
+            properties = properties.Where(p => _propertiesAsLabels.Contains(p.Key)).ToDictionary(p => p.Key, p => p.Value);
+        }
+
+        stream.AddEntry(timestamp, buffer.ToString().TrimEnd('\r', '\n'), properties);
     }
 
     private (Dictionary<string, string> Labels, LokiLogEvent LokiLogEvent) GenerateLabels(LokiLogEvent lokiLogEvent)
