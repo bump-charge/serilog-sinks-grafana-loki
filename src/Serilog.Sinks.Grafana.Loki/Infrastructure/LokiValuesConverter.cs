@@ -68,7 +68,7 @@ public class LokiValuesConverter : JsonConverter<LokiValues>
             else
             {
                 // Loki wants string values
-                writer.WriteStringValue(sv.Value?.ToString() ?? string.Empty);
+                writer.WriteStringValue(sv.Value?.ToString() ?? "<null>");
             }
         }
 

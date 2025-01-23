@@ -143,9 +143,7 @@ internal class LokiBatchFormatter : ILokiBatchFormatter
 
         if (batch.IsNotEmpty)
         {
-            var serializedBatch = batch.Serialize();
-            Console.WriteLine(serializedBatch);
-            output.Write(serializedBatch);
+            output.Write(batch.Serialize());
         }
 
         // Current behavior breaks rendering
