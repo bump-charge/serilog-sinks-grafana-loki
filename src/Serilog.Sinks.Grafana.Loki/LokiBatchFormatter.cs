@@ -184,7 +184,7 @@ internal class LokiBatchFormatter : ILokiBatchFormatter
         var properties = lokiLogEvent.Properties;
         if (_propertiesAsLabels.Any())
         {
-            properties = properties.Where(p => _propertiesAsLabels.Contains(p.Key)).ToDictionary(p => p.Key, p => p.Value);
+            properties = properties.Where(p => _propertiesAsLabels.Contains(p.Key) == false).ToDictionary(p => p.Key, p => p.Value);
         }
 
         stream.AddEntry(timestamp, buffer.ToString().TrimEnd('\r', '\n'), properties);
