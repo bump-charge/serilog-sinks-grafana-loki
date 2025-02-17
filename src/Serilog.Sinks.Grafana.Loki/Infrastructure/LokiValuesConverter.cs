@@ -77,7 +77,7 @@ public class LokiValuesConverter : JsonConverter<LokiValues>
             writer.WritePropertyName(key);
 
             // We write all data in sequence as string
-            writer.WriteStringValue(seqv.ToString());
+            writer.WriteStringValue(seqv.ToString() ?? "<null>");
         }
 
         if (propertyValue is StructureValue strv)
